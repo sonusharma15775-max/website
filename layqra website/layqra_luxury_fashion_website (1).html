@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAYQRA — Wear The Future</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #050505;
+      --card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.08);
+      --primary: #00cfff;
+      --secondary: #1e3a8a;
+      --text: #ffffff;
+      --muted: #9ca3af;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+      z-index: -1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(15px);
+      background: rgba(0,0,0,0.4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      position: relative;
+    }
+
+    .hero::after {
+      content: "LAYQRA";
+      position: absolute;
+      right: -80px;
+      bottom: 0;
+      font-size: 14rem;
+      font-weight: 900;
+      font-family: 'Montserrat', sans-serif;
+      color: rgba(255,255,255,0.03);
+      letter-spacing: 15px;
+      z-index: 1;
+    }
+
+    .premium-logo {
+      width: 140px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 25px rgba(255,215,120,0.35));
+      animation: floatLogo 5s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1800&auto=format&fit=crop') center/cover;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      z-index: 10;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      line-height: 1.05;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      text-shadow: 0 0 20px rgba(0,207,255,0.7);
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 35px;
+      font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.4s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: black;
+      box-shadow: 0 0 20px rgba(0,207,255,0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--primary);
+      background: transparent;
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: black;
+    }
+
+    .floating-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(0,207,255,0.15);
+      filter: blur(120px);
+      border-radius: 50%;
+      right: -100px;
+      top: 100px;
+      animation: pulse 6s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 3rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      overflow: hidden;
+      transition: 0.5s ease;
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) rotateX(4deg);
+      border-color: rgba(0,207,255,0.5);
+      box-shadow: 0 0 40px rgba(0,207,255,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .price {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 60px;
+      align-items: center;
+    }
+
+    .story img {
+      width: 100%;
+      border-radius: 30px;
+      box-shadow: 0 0 50px rgba(0,207,255,0.1);
+    }
+
+    .story-text h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .story-text p {
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 40px 25px;
+      text-align: center;
+      border-radius: 20px;
+      transition: 0.4s ease;
+      backdrop-filter: blur(15px);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0,207,255,0.4);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .newsletter {
+      background: linear-gradient(135deg, rgba(0,207,255,0.1), rgba(30,58,138,0.15));
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 60px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+    }
+
+    .newsletter h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .newsletter p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter input {
+      width: 350px;
+      padding: 16px 20px;
+      border-radius: 40px;
+      border: none;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      outline: none;
+    }
+
+    footer {
+      padding: 70px 0 30px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-grid h3 {
+      margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .footer-grid a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      margin-bottom: 12px;
+      transition: 0.3s ease;
+    }
+
+    .footer-grid a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    .socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .socials i {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      transition: 0.4s ease;
+      cursor: pointer;
+    }
+
+    .socials i:hover {
+      background: var(--primary);
+      color: black;
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      text-align: center;
+      color: var(--muted);
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media(max-width: 992px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .hero {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+
+      .newsletter {
+        padding: 40px 20px;
+      }
+
+      .newsletter h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container navbar">
+      <div class="logo">
+          <img src="LAYQRA LOGO.png" alt="LAYQRA Logo" style="height:65px; object-fit:contain; filter: drop-shadow(0 0 15px rgba(255,215,120,0.35));">
+        </div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#story">About</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="socials">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="floating-glow"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <img src="LAYQRA LOGO.png" alt="LAYQRA Premium Logo" class="premium-logo">
+        <h1>Wear The <span>Future</span></h1>
+
+        <p>
+          Luxury streetwear crafted for the bold generation. LAYQRA blends futuristic aesthetics, premium quality, and cinematic fashion into one unforgettable shopping experience designed to feel elegant, modern, and effortless for customers.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#shop" class="btn btn-primary">Shop Now</a>
+          <a href="#story" class="btn btn-outline">Explore</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shop">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Collection</h2>
+        <p>Luxury Streetwear Designed For Modern Trendsetters</p>
+      </div>
+
+      <div class="products">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop" alt="hoodie">
+          <div class="card-content">
+            <h3>Oversized Hoodie</h3>
+            <span class="price">₹2,999</span>
+            <a href="#" class="btn btn-primary">Add To Cart</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop" alt="streetwear">
+          <div class="card-content">
+            <h3>Luxury Streetwear</h3>
+            <span class="price">₹4,499</span>
+            <a href="#" class="btn btn-primary">Add To Cart</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200&auto=format&fit=crop" alt="jacket">
+          <div class="card-content">
+            <h3>Neon Jacket</h3>
+            <span class="price">₹5,299</span>
+            <a href="#" class="btn btn-primary">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="container story">
+      <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop" alt="fashion">
+
+      <div class="story-text">
+        <h2>LAYQRA — Beyond Fashion</h2>
+
+        <p>
+          LAYQRA represents confidence, individuality, and futuristic street culture. Designed for creators, dreamers, and trendsetters who want more than clothing — they want identity.
+        </p>
+
+        <a href="#shop" class="btn btn-primary">Discover Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose LAYQRA</h2>
+        <p>Premium Experience Built For Gen Z Fashion</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fa-solid fa-shirt"></i>
+          <h3>Premium Fabric</h3>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-truck-fast"></i>
+          <h3>Fast Delivery</h3>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-credit-card"></i>
+          <h3>Secure Payment</h3>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-star"></i>
+          <h3>Luxury Quality</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="newsletter">
+        <h2>Join The LAYQRA Movement</h2>
+        <p>Get exclusive drops, discounts, and luxury streetwear updates.</p>
+
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email">
+          <button class="btn btn-primary">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>LAYQRA</h3>
+          <p style="color: var(--muted); line-height:1.8;">
+            Premium futuristic fashion brand designed for the bold generation.
+          </p>
+
+          <div class="socials">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-tiktok"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-pinterest"></i>
+          </div>
+        </div>
+
+        <div>
+          <h3>Shop</h3>
+          <a href="#">Hoodies</a>
+          <a href="#">T-Shirts</a>
+          <a href="#">Jackets</a>
+          <a href="#">Streetwear</a>
+        </div>
+
+        <div>
+          <h3>Company</h3>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+
+        <div>
+          <h3>Support</h3>
+          <a href="#">Contact</a>
+          <a href="#">Help Center</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 LAYQRA — Wear The Future.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.background = window.scrollY > 50
+        ? 'rgba(0,0,0,0.75)'
+        : 'rgba(0,0,0,0.4)';
+    });
+
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateX = ((y / rect.height) - 0.5) * 10;
+        const rotateY = ((x / rect.width) - 0.5) * -10;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    });
+  </script>
+
+</body>
+</html>
